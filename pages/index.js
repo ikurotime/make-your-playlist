@@ -47,8 +47,6 @@ export default function Home() {
     {start === false 
     ? <HeroSection button={<Button title='Start now' action={triggerModal}/>}/> 
     :<Card width='80vw' height='65vh'/>}
-   
-   
    </>
    ) 
    : (

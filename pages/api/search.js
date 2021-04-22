@@ -4,13 +4,12 @@ y cuando cargue actualizar pagina a la del TO DO 2*/
 /* TO DO 2: Seleccionar uri, nombre, artista y foto , incluirlos en un diccionario y mostrar un modal 
  (o página aparte,seguramente) donde se muestren componentes con imagen titulo etc y confirmar para añadir
  a una nueva playlist*/
- /*TO DO 3: Hacer la Navbar Responsive */
+ /*TO DO 3: Hacer la Navbar Responsive - HECHO*/ 
  
 export default function handler(req, res) {
-    const { dictSongArtist, token, songs} = req.body
-    res.status(200).json(dictSongArtist)
+    const { dictSongArtist, token, songs} = req.body  
     var songUris = []
-    var promises = []
+    var promises = []  
     for (var i = 0; i < songs; i++) {
       var track = dictSongArtist[i].song
       var artist = dictSongArtist[i].artist
@@ -18,7 +17,6 @@ export default function handler(req, res) {
       var uri = []
       var data = []
       promises.push(
-        //{ headers: {  Authorization: `${AuthStr}` }}
         axios.get(URL )
       .then(response => {
           data = response.data// If request is good...
@@ -27,8 +25,8 @@ export default function handler(req, res) {
        })
       .catch((error) => {
           console.log(data)
-       })    //console.log(dictSongArtist[0])
+       })    
       )     
   }
-  Promise.all(promises).then(() => console.log(songUris,songUris.length));
+  Promise.all(promises).then(() => res.status(200).json({ token: songUris },console.log(songUris)));
 }

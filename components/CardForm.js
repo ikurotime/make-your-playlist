@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import React from 'react'
-import Button from './button';
+import Button from './Button';
 import Select from '@material-ui/core/Select';
 import NextCors from 'nextjs-cors';
 import axios from 'axios';
@@ -51,17 +51,18 @@ export default function CardForm(props) {
               "Content-Type": "application/json",
             },
           },
-        );
-        //console.log(res) //check now
-      } catch (e) {}
-
-     
-     
+        )
+        
+      } catch (e) {}     
     }
   
     return (
         
         <form className='CardForm' onSubmit={handleSubmit} style={{width:props.width, height:props.height}}>
+          <div className= 'Picker'>
+            <p>Choose a name for your new playlist:</p><br/>
+            <TextField id="playlistName" color='primary' style={{ margin: 5}} label="My awesome playlist" />
+          </div>
           <div className= 'datePicker'>
               Select a date:   <TextField
                                 style={{marginLeft: 20}}
@@ -95,11 +96,7 @@ export default function CardForm(props) {
 
         </Select>
           </div>
-          <div className= 'Picker'>
-            <p>Choose a name for your new playlist:</p><br/>
-            <TextField id="playlistName" color='primary' style={{ margin: 5}} label="My awesome playlist" />
-
-          </div>
+          
           <div>
           <Button title='Make my playlist' submit />
           </div>
