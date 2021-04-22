@@ -1,65 +1,81 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Card from '../components/CardForm'
+import HeroSection from '../components/HeroSection'
+import Navbar from '../components/Navbar'
+import { useState } from 'react'
+import Cookies from 'js-cookie'
+import { SpotifyAuth, Scopes } from 'react-spotify-auth'
+import 'react-spotify-auth/dist/index.css'
+import Welcome from '../components/Welcome'
+import Button from '../components/Button'
+
 
 export default function Home() {
+
+  /*Aquí establecemos unas cookies que contengan el token de la solicitud, el nombre de usuario y su imágen de perfil.
+    Usando useState hacemos que primer valor que se le asigne, en caso de existir, sea el de la cookie, en caso contrario, usamos un valor por defecto*/
+  const token = Cookies.get('spotifyAuthToken')
+  const [name, setName] = useState(Cookies.get('spotifyName') ? Cookies.get('spotifyName') : 'user')
+  const [image, setImage] = useState(Cookies.get('spotifyProfileImage') ? Cookies.get('spotifyProfileImage') : '')
+  const [start, setStart] = useState(false)
+
+  const triggerModal = () =>{
+    if (start === false){
+      setStart(true)
+    }
+  }
+  const triggerModalFalse = () =>{
+    if (start === true){
+       setStart(false)
+    }
+  }
+  const logout = () =>{
+     // Función logout, elimina las cookies y por lo tanto no te hace log in automáticamente 
+    Cookies.remove('spotifyAuthToken')
+    Cookies.remove('spotifyName')
+    Cookies.remove('spotifyProfileImage')
+  }
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+    /*Al cargar la página comprueba si existe algún token, si existe, el usuario hace login automaticamente y muestra los componentes de la página principal,
+      de lo contrario, muestra los componentes para hacer login y generar las cookies correspondientes.*/
+   <>
+    {token 
+    ?(
+      <>
+    <Navbar title= {name} src={image} logout={logout} action={triggerModalFalse}/>
+    {start === false 
+    ? <HeroSection button={<Button title='Start now' action={triggerModal}/>}/> 
+    :<Card width='80vw' height='65vh'/>}
+   
+   
+   </>
+   ) 
+   : (
+   <>
+    <Welcome button={
+    <SpotifyAuth
+    redirectUri='http://localhost:3000/'
+    clientID='613994df86694aae8b095860b2f7c3d6'
+    scopes={[Scopes.playlistModifyPublic, Scopes.userReadPrivate]} 
+    onAccessToken= { async(token) =>{ 
+      /* Al recibir un token con éxito, se realiza una llamada asíncrona usando la api y el token,
+       lo que devuelve un json con los datos del usuario. Seleccionamos su nombre de usuario y foto de perfil.*/
+      const urlSpoty = 'https://api.spotify.com/v1/me?access_token=' + `${token}`
+      const response = await fetch(urlSpoty)
+      const data = await response.json()
+      setName(data.display_name)
+      setImage(data.images[0].url)
+      Cookies.set('spotifyName', data.display_name)
+      Cookies.set('spotifyProfileImage', data.images[0].url)
+      location.reload()
+    }} 
+    btnClassName='login_button'
+    logoClassName='logo_button'
+    title='Log in with Spotify'/>
+    }/>
+</>
+   )}
+   </>
   )
 }

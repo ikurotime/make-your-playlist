@@ -14,3 +14,103 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.p_logo{
+    margin: 0 5%;
+}
+.login_button{
+    background-color: #B0EACD;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    height: 50px;
+    padding: 0 25px;
+    border-radius: 8px; 
+    box-shadow: 0 3px 3px #d8d8d8;
+  }
+  .logo_button{
+    margin: 0 5px;
+    vertical-align: middle;
+    fill: white;
+    width: 20px;
+  }
+.login_button:hover{
+  background-color: #90dab5;
+}
+.custom-navbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  overflow: hidden;
+  height: 80px;
+  box-shadow: 0 5px 8px #d8d8d8;
+
+}
+/* Style the links inside the navigation bar */
+.custom-navbar a {
+  float: left;
+  color: #bdbdbd;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+/* Change the color of links on hover */
+.custom-navbar a:hover {
+  color: #ddd;
+}
+/* Add a color to the active/current link */
+.custom-navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.HeroSection{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 10%;
+  height: 80vh;
+}
+.WelcomeSection{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 10%;
+  height: 100vh;
+}
+
+.HeroSection h1{
+  font-size:  4.5vw;
+}
+.CardForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  margin: 5vw 10vw;
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 0 5px 8px #d8d8d8;
+  border-radius: 8px;
+}
+.datePicker{
+  font-size: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.Picker{
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+.textField:active{
+  color: #4CAF50;
+}
