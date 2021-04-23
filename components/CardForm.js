@@ -39,7 +39,7 @@ export default function CardForm(props) {
       //console.log({fecha: fecha.value, songs: songs.value, playlistName: playlistName.value})
       try {
         const res = await axios.post(
-          "http://localhost:3000/api/register",
+          "http://localhost:3000/api/search",
           {
             fecha: fecha.value,
             songs: songs.value,
@@ -52,7 +52,7 @@ export default function CardForm(props) {
             },
           },
         )
-        
+        console.log(res.data)
       } catch (e) {}     
     }
   

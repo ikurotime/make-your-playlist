@@ -12,7 +12,7 @@ const NavSmall = (props) => {
 
     return (
         <div className="nav-small" >
-            <a onClick={handleToggle} >{props.title}</a>
+            <span className='username' onClick={handleToggle} >{props.title}</span>
             <Button
                 action={handleToggle}
                 style={{background: `url('${props.src}') center`, backgroundSize: 'cover', borderRadius:50}}

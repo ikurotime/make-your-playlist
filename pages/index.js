@@ -46,7 +46,7 @@ export default function Home() {
     <Navbar title= {name} src={image} logout={logout} action={triggerModalFalse}/>
     {start === false 
     ? <HeroSection button={<Button title='Start now' action={triggerModal}/>}/> 
-    :<Card width='80vw' height='65vh'/>}
+    :<Card width='90vw' height='90vh'/>}
    </>
    ) 
    : (
