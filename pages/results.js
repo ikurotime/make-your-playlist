@@ -12,7 +12,7 @@ export default function results(props) {
     const [finished, setFinished] = useState(false)
     const router = useRouter()
     const {title, data} = router.query
-    const jsonQuery = JSON.parse(data)
+    const jsonQuery = data ? JSON.parse(data) : ''
     var songUris = []
     const accessToken = Cookies.get('spotifyAuthToken')
     const name = Cookies.get('spotifyName')
@@ -86,12 +86,17 @@ export default function results(props) {
 
     return (<>
     <Navbar title= {name} src={image} logout={logout}/>
-{ finished ? 
+{ finished 
+
+  ? 
+
   <div className='CardResults' style={{width:'90%', height:'100%', paddingTop:'10px'}}>
   <h1>"{title}" has been added to Spotify</h1>
   <h2>Go and check! If it does not appear, restart the app </h2>
   </div> 
+
   :
+
     <div className='CardResults' style={{width:'90%', height:'100%', paddingTop:'10px'}}>
     <h1>Se ha creado tu playlist: "{title}" </h1>
     <Button title='Añadir a Spotify' style={{marginTop: 20, maxWidth: 200}} action={createPlaylist}/>
