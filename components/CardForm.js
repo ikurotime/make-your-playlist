@@ -46,7 +46,7 @@ export default function CardForm(props) {
       PlaylistName = playlistName.value
       try {
         const res = await axios.post(
-          "http://makeyourplaylist.vercel.app/api/search",
+          "https://makeyourplaylist.vercel.app/api/search",
           {
             fecha: fecha.value,
             songs: songs.value,
