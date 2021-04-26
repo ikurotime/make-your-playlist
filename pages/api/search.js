@@ -72,7 +72,6 @@ export default async function handler(req, res) {
               Image: image,
               Uri: uri
             });
-            
           })
           .catch((error) => {
             console.log(data.tracks.items[0])

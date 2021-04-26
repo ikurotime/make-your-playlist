@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
 import Navbar from '../components/Navbar'
@@ -9,10 +9,10 @@ import Button from '../components/Button';
 import Footer from '../components/Footer';
 
 export default function results(props) {
+    const [finished, setFinished] = useState(false)
     const router = useRouter()
     const {title, data} = router.query
     const jsonQuery = JSON.parse(data)
-
     var songUris = []
     const accessToken = Cookies.get('spotifyAuthToken')
     const name = Cookies.get('spotifyName')
@@ -46,8 +46,8 @@ export default function results(props) {
         {
           headers: {Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json'},
           method: 'POST',
-        }
-        )
+        }),
+        setFinished(true)
       });
     }
 
@@ -86,6 +86,12 @@ export default function results(props) {
 
     return (<>
     <Navbar title= {name} src={image} logout={logout}/>
+{ finished ? 
+  <div className='CardResults' style={{width:'90%', height:'100%', paddingTop:'10px'}}>
+  <h1>"{title}" has been added to Spotify</h1>
+  <h2>Go and check! If it does not appear, restart the app </h2>
+  </div> 
+  :
     <div className='CardResults' style={{width:'90%', height:'100%', paddingTop:'10px'}}>
     <h1>Se ha creado tu playlist: "{title}" </h1>
     <Button title='Añadir a Spotify' style={{marginTop: 20, maxWidth: 200}} action={createPlaylist}/>
@@ -97,6 +103,7 @@ export default function results(props) {
       </Grid>
       <Button title='Añadir a Spotify' style={{marginTop: 20, maxWidth: 200}} action={createPlaylist}/>
     </div> 
+}
     <Footer/>
             </>
     )
