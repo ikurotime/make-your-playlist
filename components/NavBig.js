@@ -2,6 +2,7 @@ import React from 'react'
 
 export default function NavBig(props) {
     return (
+        <>
         <div className="custom-navbar-right">
         <a href="#Genre">Playlist by genre</a>
         <a href="#Date">Playlist by date</a>
@@ -12,5 +13,6 @@ export default function NavBig(props) {
         </div>
         <a href='/'onClick={props.logout}>Log out</a>
     </div>
+    </>
     )
 }

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Card from '../components/CardForm'
+import CardForm from '../components/CardForm'
 import HeroSection from '../components/HeroSection'
 import Navbar from '../components/Navbar'
 import { useState } from 'react'
@@ -8,10 +8,10 @@ import { SpotifyAuth, Scopes } from 'react-spotify-auth'
 import 'react-spotify-auth/dist/index.css'
 import Welcome from '../components/Welcome'
 import Button from '../components/Button'
+import Footer from '../components/Footer'
 
 
 export default function Home() {
-
   /*Aquí establecemos unas cookies que contengan el token de la solicitud, el nombre de usuario y su imágen de perfil.
     Usando useState hacemos que primer valor que se le asigne, en caso de existir, sea el de la cookie, en caso contrario, usamos un valor por defecto*/
   const token = Cookies.get('spotifyAuthToken')
@@ -46,7 +46,9 @@ export default function Home() {
     <Navbar title= {name} src={image} logout={logout} action={triggerModalFalse}/>
     {start === false 
     ? <HeroSection button={<Button title='Start now' action={triggerModal}/>}/> 
-    :<Card width='90vw' height='90vh'/>}
+    :<CardForm width='90vw' height='90vh'/>
+      }
+     <Footer/>
    </>
    ) 
    : (
@@ -64,8 +66,9 @@ export default function Home() {
       const data = await response.json()
       setName(data.display_name)
       setImage(data.images[0].url)
-      Cookies.set('spotifyName', data.display_name)
-      Cookies.set('spotifyProfileImage', data.images[0].url)
+      Cookies.set('spotifyName', data.display_name,{ path: '/' })
+      Cookies.set('spotifyProfileImage', data.images[0].url,{ path: '/' })
+      Cookies.set('spotifyAuthToken', token, {path:'/'})
       location.reload()
     }} 
     btnClassName='login_button'

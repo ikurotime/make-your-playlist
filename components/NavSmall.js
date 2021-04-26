@@ -10,7 +10,7 @@ const NavSmall = (props) => {
         setToggleMenu(!toggleMenu)
     }
 
-    return (
+    return (<>
         <div className="nav-small" >
             <span className='username' onClick={handleToggle} >{props.title}</span>
             <Button
@@ -27,6 +27,7 @@ const NavSmall = (props) => {
             </div>
                     : ""}
         </div>
+        </>
     )
 }
 export default NavSmall;
