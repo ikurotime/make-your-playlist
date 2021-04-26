@@ -55,7 +55,7 @@ export default function Home() {
    <>
     <Welcome button={
     <SpotifyAuth
-    redirectUri='http://localhost:3000/'
+    redirectUri='http://makeyourplaylist.vercel.app/'
     clientID='613994df86694aae8b095860b2f7c3d6'
     scopes={[Scopes.playlistModifyPublic, Scopes.userReadPrivate]} 
     onAccessToken= { async(token) =>{ 
