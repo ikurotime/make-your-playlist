@@ -86,7 +86,8 @@ a {
   min-height: 10%;
   max-width: 15%;
   max-height: 15%;
-  margin: 0;
+  position: absolute;
+  z-index: -9999;
 }
 @media screen and (min-width: 998px) {
   .welcome_Logo{
@@ -236,5 +237,8 @@ a {
   }
   .HeroSection{
     height: 70vh;
+  }
+  .WelcomeSection{
+    height: 85vh;
   }
 }

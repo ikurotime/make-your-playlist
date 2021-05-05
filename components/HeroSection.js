@@ -7,7 +7,7 @@ export default function HeroSection(props) {
             <h1>Create awesome <br/>playlists that people <br/>will love</h1>
             {props.button}
             </div>
-            <img src="./../mockup.png" alt="Mobile phone" width='30%' style={{paddingTop: 40}}/>
+            <img src="./../mockup.png" alt="Mobile phone" width='30%' style={{marginTop: 63}}/>
         </div>
     )
 }
