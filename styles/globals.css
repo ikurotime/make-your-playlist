@@ -113,6 +113,7 @@ a {
     display: flex;
     flex-direction: row;
   }
+ 
   .p_logo{
     width: 250px;
   }
@@ -124,25 +125,13 @@ a {
     display: none;
   }
 }
-@media screen and (max-width:830px) {
-  .itemContainer{
-    flex-direction: column;
-  }
-  .itemImage{
-    min-width: none;
-    min-height: none;
-    max-width: 200px;
-    max-height: none;
-    margin-top: 15%;
-    width: 60%;
-    height:15%;
-  }
-}
+
 @media screen and (min-width: 523px) {
  .navOptions{
    top: 8%;
   left:70%;
  }
+ 
 }
 @media screen and (max-width: 522px) {
   .navOptions{
@@ -152,6 +141,7 @@ a {
   .gridContainer{
     margin: 5%;
   }
+  
  }
  @media screen and (max-width: 414px) {
   .username{
@@ -230,4 +220,21 @@ a {
 }
 .textField:active{
   color: #4CAF50;
+}
+@media screen and (max-width:830px) {
+  .itemContainer{
+    flex-direction: column;
+  }
+  .itemImage{
+    min-width: none;
+    min-height: none;
+    max-width: 200px;
+    max-height: none;
+    margin-top: 25%;
+    width: 60%;
+    height:15%;
+  }
+  .HeroSection{
+    height: 70vh;
+  }
 }

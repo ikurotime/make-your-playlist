@@ -76,10 +76,10 @@ export default function CardForm(props) {
     <form className='CardForm' onSubmit={handleSubmit} style={{width:props.width, height:props.height}}>
     <div className= 'Picker'>
       <p>Choose a name for your new playlist:</p><br/>
-      <TextField id="playlistName" color='primary' style={{ margin: 5 }} label="My awesome playlist" />
+      <TextField id="playlistName" color='primary' style={{ margin: 5 }} label="Playlist" />
     </div>
     <div className= 'datePicker'>
-        Select a date:   <TextField
+        Choose a date to select the songs from:   <TextField
                           style={{marginLeft: 20}}
                           id="fecha"
                           label=""
@@ -92,7 +92,7 @@ export default function CardForm(props) {
                       />
     </div>
     <div className= 'datePicker'>
-        Select songs:   <Select
+        Select top songs:   <Select
                               style={{marginLeft: 20}}
                               native
                               value={state.age}

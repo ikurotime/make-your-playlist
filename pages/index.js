@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import CardForm from '../components/CardForm'
 import HeroSection from '../components/HeroSection'
 import Navbar from '../components/Navbar'
@@ -18,6 +17,7 @@ export default function Home() {
   const [name, setName] = useState(Cookies.get('spotifyName') ? Cookies.get('spotifyName') : 'user')
   const [image, setImage] = useState(Cookies.get('spotifyProfileImage') ? Cookies.get('spotifyProfileImage') : '')
   const [start, setStart] = useState(false)
+  //const [byDate, setByDate] = useState(false)
 
   const triggerModal = () =>{
     if (start === false){
@@ -45,8 +45,10 @@ export default function Home() {
       <>
     <Navbar title= {name} src={image} logout={logout} action={triggerModalFalse}/>
     {start === false 
-    ? <HeroSection button={<Button title='Start now' action={triggerModal}/>}/> 
-    :<CardForm width='90vw' height='90vh'/>
+    ?<HeroSection button={<Button title='Create playlist by date' action={triggerModal}/>}/> 
+    : 
+     
+    <CardForm width='90vw' height='90vh'/>
       }
      <Footer/>
    </>
@@ -73,7 +75,8 @@ export default function Home() {
     }} 
     btnClassName='login_button'
     logoClassName='logo_button'
-    title='Log in with Spotify'/>
+    title='Log in with Spotify'
+    showDialog/>
     }/>
 </>
    )}
