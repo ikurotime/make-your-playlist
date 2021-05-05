@@ -12,7 +12,7 @@ export default function results(props) {
     const [finished, setFinished] = useState(false)
     const router = useRouter()
     const {title, data} = router.query
-    const jsonQuery = JSON.parse(data)
+    const jsonQuery = data ? JSON.parse(data) : ''
     var songUris = []
     const accessToken = Cookies.get('spotifyAuthToken')
     const name = Cookies.get('spotifyName')
