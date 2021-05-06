@@ -45,7 +45,11 @@ export default function Home() {
       <>
     <Navbar title= {name} src={image} logout={logout} action={triggerModalFalse}/>
     {start === false 
-    ?<HeroSection button={<Button title='Create playlist by date' action={triggerModal}/>}/> 
+    ?<HeroSection 
+    buttonDate={<Button title='Top Week' action={triggerModal}/>}
+    buttonGenre={<Button title='Top Year' />}
+    buttonDecade={<Button title='Top Decade' />}
+    /> 
     : 
      
     <CardForm width='90vw' height='90vh'/>
