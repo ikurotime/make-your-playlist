@@ -8,7 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 
-export default function results(props) {
+export default function results() {
     const [finished, setFinished] = useState(false)
     const router = useRouter()
     const {title, data} = router.query
@@ -17,6 +17,7 @@ export default function results(props) {
     const accessToken = Cookies.get('spotifyAuthToken')
     const name = Cookies.get('spotifyName')
     const image = Cookies.get('spotifyProfileImage')
+
     const getUris = () =>{
       for (let i = 0; i <jsonQuery.length; i++) {
         const uri = jsonQuery[i].Uri;
@@ -62,7 +63,8 @@ export default function results(props) {
         },
       }));
      
-     const classes = useStyles();    
+     const classes = useStyles(); 
+   
      const getSongs = ()=>{
         var songList = [];
          for (let i = 0; i < jsonQuery.length; i++) {
@@ -72,7 +74,7 @@ export default function results(props) {
             songList.push( 
             <Grid item xs={12} key={i}>
                 <Paper className={classes.paper, 'itemContainer'}>
-                    <img src={src} className='itemImage'/>
+                    <img src={`${src}`} className='itemImage'/>
                     <div style={{margin:'auto'}}> 
                     <h3 style={{marginBottom:'auto', padding:'0 5px'}} >{songTitle}</h3><br/>
                     <h4 style={{marginTop:'auto', color:'#BDBDBD'}}>{artist}</h4>
