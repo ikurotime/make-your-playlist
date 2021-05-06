@@ -46,9 +46,9 @@ export default function Home() {
     <Navbar title= {name} src={image} logout={logout} action={triggerModalFalse}/>
     {start === false 
     ?<HeroSection 
-    buttonDate={<Button title='Top Week' action={triggerModal}/>}
-    buttonGenre={<Button title='Top Year' />}
-    buttonDecade={<Button title='Top Decade' />}
+    buttonDate={<Button title='Top 100' action={triggerModal}/>}
+    /*buttonGenre={<Button title='Top Year' />}
+    buttonDecade={<Button title='Top Decade' /> }*/
     /> 
     : 
      
